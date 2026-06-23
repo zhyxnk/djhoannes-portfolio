@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Local Claude Code dev-server scaffolding (preview only)
+.claude/
