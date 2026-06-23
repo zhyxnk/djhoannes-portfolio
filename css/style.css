@@ -351,7 +351,7 @@ section { position: relative; padding: 96px 0; }
 /* ---------- Hero ---------- */
 .hero {
   min-height: 100vh; display: flex; align-items: center;
-  padding-top: var(--nav-h); position: relative; overflow: hidden;
+  padding: var(--nav-h) 5% 0; position: relative; overflow: hidden;
 }
 .hero-grid {
   display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: center;
@@ -359,8 +359,9 @@ section { position: relative; padding: 96px 0; }
 }
 .hero-title {
   font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(2.6rem, 7vw, 4.8rem); line-height: 1.02; letter-spacing: -0.03em;
+  font-size: clamp(2.2rem, 7vw, 4.8rem); line-height: 1.1; letter-spacing: -0.03em;
   margin: 18px 0 22px;
+  overflow-wrap: break-word; word-break: break-word; hyphens: auto;
 }
 .hero-title .accent {
   background: linear-gradient(120deg, #fff, var(--accent-silver));
@@ -680,6 +681,8 @@ section { position: relative; padding: 96px 0; }
 
 @media (max-width: 560px) {
   section { padding: 64px 0; }
+  .hero { padding-inline: 6%; }
+  .hero-title { font-size: clamp(1.9rem, 8.5vw, 2.6rem); line-height: 1.12; }
   .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
   .facts-grid { grid-template-columns: 1fr; }
   .stats-row { grid-template-columns: 1fr 1fr; }
