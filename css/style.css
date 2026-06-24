@@ -358,17 +358,18 @@ section { position: relative; padding: 96px 0; }
 /* ---------- Hero ---------- */
 .hero {
   min-height: 100vh; display: flex; align-items: center;
-  padding: var(--nav-h) 5% 0; position: relative; overflow: hidden;
+  padding: var(--nav-h) 5% 0; position: relative; overflow: visible;
 }
 .hero-grid {
   display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: center;
-  position: relative; z-index: 2;
+  position: relative; z-index: 2; overflow: visible;
 }
+.hero-text { overflow: visible; }
 .hero-title {
   font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(2.4rem, 7vw, 5rem); line-height: 1.1; letter-spacing: -0.03em;
-  margin: 18px 0 22px;
-  overflow-wrap: normal; word-break: normal;
+  font-size: clamp(2.4rem, 7vw, 5rem); line-height: 1.25; letter-spacing: -0.03em;
+  margin: 18px 0 22px; padding-bottom: 0.2em;
+  overflow: visible; overflow-wrap: normal; word-break: normal;
 }
 .hero-title .accent {
   background: linear-gradient(120deg, #fff, var(--accent-silver));
@@ -695,7 +696,7 @@ section { position: relative; padding: 96px 0; }
 @media (max-width: 560px) {
   section { padding: 64px 0; }
   .hero { padding-inline: 6%; }
-  .hero-title { font-size: clamp(1.9rem, 8.5vw, 2.6rem); line-height: 1.12; }
+  .hero-title { font-size: clamp(1.9rem, 8.5vw, 2.6rem); line-height: 1.25; }
   .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
   .facts-grid { grid-template-columns: 1fr; }
   .stats-row { grid-template-columns: 1fr 1fr; }
