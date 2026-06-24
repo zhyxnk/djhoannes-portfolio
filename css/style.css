@@ -17,7 +17,7 @@
   --text-secondary: #a0a0a0;
   --text-muted:     #555555;
 
-  --font-display: 'Syne', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
   --font-body:    'Inter', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
 
@@ -366,8 +366,8 @@ section { position: relative; padding: 96px 0; }
 }
 .hero-text { overflow: visible; }
 .hero-title {
-  font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(2.4rem, 7vw, 5rem); line-height: 1.25; letter-spacing: -0.03em;
+  font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+  font-size: clamp(5rem, 12vw, 11rem); line-height: 1.0; letter-spacing: 0.02em;
   margin: 18px 0 22px; padding-bottom: 0.2em;
   overflow: visible; overflow-wrap: normal; word-break: normal;
 }
@@ -696,7 +696,7 @@ section { position: relative; padding: 96px 0; }
 @media (max-width: 560px) {
   section { padding: 64px 0; }
   .hero { padding-inline: 6%; }
-  .hero-title { font-size: clamp(1.9rem, 8.5vw, 2.6rem); line-height: 1.25; }
+  .hero-title { font-size: clamp(3rem, 15vw, 5.5rem); line-height: 1.0; }
   .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
   .facts-grid { grid-template-columns: 1fr; }
   .stats-row { grid-template-columns: 1fr 1fr; }
