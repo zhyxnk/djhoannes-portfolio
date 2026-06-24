@@ -111,17 +111,59 @@
     tick();
   }
 
-  /* ---------- Cursor glow ---------- */
+  /* ---------- Cursor glow (zero-lag: follows pointer instantly) ---------- */
   function cursorGlow() {
     const glow = $(".cursor-glow");
     if (!glow) return;
-    let tx = 0, ty = 0, x = 0, y = 0, shown = false;
+    glow.style.transition = "opacity .25s";   // no transform smoothing → no lag
+    let shown = false;
     window.addEventListener("mousemove", e => {
-      tx = e.clientX; ty = e.clientY;
+      glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       if (!shown) { glow.style.opacity = "1"; shown = true; }
-    });
-    const loop = () => { x += (tx - x) * 0.12; y += (ty - y) * 0.12;
-      glow.style.transform = `translate(${x}px, ${y}px)`; requestAnimationFrame(loop); };
+    }, { passive: true });
+  }
+
+  /* ---------- Global twinkling starfield ---------- */
+  function starfield() {
+    let canvas = $("#starfield");
+    if (!canvas) {
+      canvas = document.createElement("canvas");
+      canvas.id = "starfield";
+      document.body.prepend(canvas);
+    }
+    const ctx = canvas.getContext("2d");
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let w, h, stars = [];
+    const build = () => {
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = w * DPR; canvas.height = h * DPR;
+      canvas.style.width = w + "px"; canvas.style.height = h + "px";
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      const count = Math.max(150, Math.min(200, Math.floor((w * h) / 9000)));
+      stars = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        r: Math.random() * 1.5 + 0.5,        // 0.5px – 2px
+        base: Math.random() * 0.5 + 0.25,    // base brightness
+        amp: Math.random() * 0.45 + 0.2,     // twinkle depth
+        speed: Math.random() * 0.025 + 0.004,// twinkle rate (random)
+        phase: Math.random() * Math.PI * 2
+      }));
+    };
+    const paint = (animated) => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#ffffff";
+      for (const s of stars) {
+        if (animated) s.phase += s.speed;
+        const o = animated ? s.base + Math.sin(s.phase) * s.amp : s.base + s.amp * 0.5;
+        ctx.globalAlpha = o < 0 ? 0 : o > 1 ? 1 : o;
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    };
+    build();
+    window.addEventListener("resize", build);
+    if (reduceMotion) { paint(false); return; }   // static stars, no twinkle
+    const loop = () => { paint(true); requestAnimationFrame(loop); };
     loop();
   }
 
@@ -303,6 +345,7 @@
   /* ---------- Init ---------- */
   document.addEventListener("DOMContentLoaded", () => {
     injectChrome();
+    starfield();
     navScroll();
     mobileMenu();
     fadeIns();
