@@ -135,7 +135,9 @@
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
     let w, h, stars = [];
     const build = () => {
-      w = window.innerWidth; h = window.innerHeight;
+      // use the layout viewport (clientWidth/Height) so the canvas never
+      // exceeds the page width and triggers horizontal scroll
+      w = document.documentElement.clientWidth; h = document.documentElement.clientHeight;
       canvas.width = w * DPR; canvas.height = h * DPR;
       canvas.style.width = w + "px"; canvas.style.height = h + "px";
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);

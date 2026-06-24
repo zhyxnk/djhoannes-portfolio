@@ -17,7 +17,7 @@
   --text-secondary: #a0a0a0;
   --text-muted:     #555555;
 
-  --font-display: 'Bebas Neue', sans-serif;
+  --font-display: 'Syne', sans-serif;
   --font-body:    'Inter', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
 
@@ -366,9 +366,9 @@ section { position: relative; padding: 96px 0; }
 }
 .hero-text { overflow: visible; }
 .hero-title {
-  font-family: 'Bebas Neue', sans-serif; font-weight: 400;
-  font-size: clamp(5rem, 12vw, 11rem); line-height: 1.0; letter-spacing: 0.02em;
-  margin: 18px 0 22px; padding-bottom: 0.2em;
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(2.8rem, 5.5vw, 5rem); line-height: 1.2; letter-spacing: -0.02em;
+  margin: 18px 0 22px; padding: 0.1em 0 0.2em 0;
   overflow: visible; overflow-wrap: normal; word-break: normal;
 }
 .hero-title .accent {
@@ -696,7 +696,7 @@ section { position: relative; padding: 96px 0; }
 @media (max-width: 560px) {
   section { padding: 64px 0; }
   .hero { padding-inline: 6%; }
-  .hero-title { font-size: clamp(3rem, 15vw, 5.5rem); line-height: 1.0; }
+  .hero-title { font-size: clamp(2rem, 8vw, 2.8rem); line-height: 1.2; }
   .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
   .facts-grid { grid-template-columns: 1fr; }
   .stats-row { grid-template-columns: 1fr 1fr; }
